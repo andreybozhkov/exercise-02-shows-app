@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import left from '../../resources/left.png';
-import right from '../../resources/right.png';
+import left from '../resources/left.png';
+import right from '../resources/right.png';
+import '../styles/Slider.css';
 
 class Slider extends Component {
     constructor() {
@@ -30,7 +31,7 @@ class Slider extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:9999/episodePreview' + this.props.focusedEp)
+        fetch('http://localhost:9999/episodePreview/' + this.props.focusedEp)
             .then(data => {
                 return data.json();
             })
@@ -51,10 +52,8 @@ class Slider extends Component {
                         className='slider-elem slider-button case-left'
                         onClick={() =>
                             this.props.updateFunc(
-                                Number(this.props.focusedEp) - 1 < 0
-                                ? 0
-                                : Number(this.props.focusedEp) - 1
-                        )}
+                                Number(this.props.focusedEp) - 1 < 0 ? 0 : Number(this.props.focusedEp) - 1)
+                        }
                     />
                     <img
                         className='sliderImg slider-elem'
@@ -67,10 +66,7 @@ class Slider extends Component {
                         className='slider-elem slider-button case-right'
                         onClick={() => 
                             this.props.updateFunc(
-                                Number(this.props.focusedEp) + 1 > 2
-                                ? 2
-                                : Number(this.props.focusedEp) + 1
-                            )
+                                Number(this.props.focusedEp) + 1 > 2 ? 2 : Number(this.props.focusedEp) + 1)
                         }
                     />
                 </div>
