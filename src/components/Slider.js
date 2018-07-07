@@ -18,18 +18,6 @@ class Slider extends Component {
         };
     }
 
-    componentWillReceiveProps() {
-        fetch('http://localhost:9999/episodePreview/' + this.props.focusedEp)
-            .then(data => {
-                return data.json();
-            })
-            .then(parseData => {
-                this.promisfyState({ selectedImg: parseData.url }).then(() => {
-                    console.log('loaded new state');
-                })
-            });
-    }
-
     componentDidMount() {
         fetch('http://localhost:9999/episodePreview/' + this.props.focusedEp)
             .then(data => {
@@ -39,6 +27,18 @@ class Slider extends Component {
                 this.promisfyState({ selectedImg: parseData.url }).then(() => {
                     console.log('mount');
                 });
+            });
+    }
+
+    componentWillReceiveProps() {
+        fetch('http://localhost:9999/episodePreview/' + this.props.focusedEp)
+            .then(data => {
+                return data.json();
+            })
+            .then(parseData => {
+                this.promisfyState({ selectedImg: parseData.url }).then(() => {
+                    console.log('loaded new state');
+                })
             });
     }
 
