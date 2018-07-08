@@ -10,7 +10,7 @@ class App extends Component {
 
     this.state = {
       epOnFocus : 0,
-      charOnFocus: null
+      targetCharId: null
     };
 
     this.changeEp = (ep) => {
@@ -21,8 +21,7 @@ class App extends Component {
   }
 
   setCharOnFocus (targetId) {
-    console.log('ID that reached App.js:' + targetId);
-    this.setState({ charOnFocus: targetId });
+    this.setState({ targetCharId: targetId });
   }
 
   render() {
@@ -30,7 +29,7 @@ class App extends Component {
       <div className='App' >
         <Slider updateFunc={this.changeEp} focusedEp={this.state.epOnFocus}/>
         <Roster setCharOnFocus={this.setCharOnFocus} />
-        <Character targetChar={this.state.charOnFocus} />
+        <Character targetChar={this.state.targetCharId} />
       </div>
     );
   }

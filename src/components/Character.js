@@ -11,15 +11,15 @@ export default class Character extends Component {
     }
 
     componentWillReceiveProps() {
-        console.log(this.props.targetChar);
-        /*fetch('http://localhost:9999/character/' + this.props.targetChar)
-            .then(data => {
-                return data.json();
-            })
-            .then(parsedData => {
-                console.log(parsedData);
-                //this.setState({ charOnFocus: parsedData });
-            });*/
+        if (this.props.targetChar !== undefined && this.props.targetChar !== null) {
+            fetch('http://localhost:9999/character/' + this.props.targetChar)
+                .then(data => {
+                    return data.json();
+                })
+                .then(parsedData => {
+                    this.setState({ charOnFocus: parsedData });
+                });
+        }
     }
 
     render() {
@@ -30,8 +30,8 @@ export default class Character extends Component {
                     key={this.state.charOnFocus.id}
                     altName={this.state.charOnFocus.name}
                 />
-                Name: {this.state.charOnFocus.name}
-                Bio: {this.state.charOnFocus.bio}
+                <p>Name: {this.state.charOnFocus.name}</p>
+                <p>Bio: {this.state.charOnFocus.bio}</p>
             </div>
         )
     }
