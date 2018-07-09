@@ -30,8 +30,9 @@ class Slider extends Component {
             });
     }
 
-    componentWillReceiveProps() {
-        fetch('http://localhost:9999/episodePreview/' + this.props.focusedEp)
+    componentDidUpdate(prevProps) {
+        if (this.props.focusedEp !== prevProps.focusedEp) {
+            fetch('http://localhost:9999/episodePreview/' + this.props.focusedEp)
             .then(data => {
                 return data.json();
             })
@@ -40,6 +41,7 @@ class Slider extends Component {
                     console.log('loaded new state');
                 })
             });
+        }
     }
 
     render() {

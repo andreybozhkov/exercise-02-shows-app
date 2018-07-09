@@ -7,14 +7,20 @@ export default class Image extends Component {
         this.state = {
             imageUrl: this.props.imageUrl,
             altName: this.props.altName,
-            id: this.props.id
+            id: this.props.id,
+            childOfChar: false
         };
 
         this.passCharIdToParent = this.passCharIdToParent.bind(this);
     }
 
     passCharIdToParent(event) {
-        this.props.passCharIdToParent(event.target.id);
+        if (this.props.childOfChar === true) {
+            this.setState({ childOfChar: true });
+        }
+        else {
+            this.props.passCharIdToParent(event.target.id);
+        }
     }
 
     render() {
